@@ -1,29 +1,49 @@
 ---
 const technologies = [
   "python",
-  "mysql",
-  "postgresql",
+  "excel",
   "powerbi",
-  "excel",      // Indispensable para análisis rápido
-  "powerpoint", // Clave para presentaciones ejecutivas
+  "sql",
   "pandas",
-  "git",
-  "astro",      // Tu portafolio está hecho aquí
-  "tailwindcss",
-  "html5",
-  "css3",
-  "javascript",
-  "tableau",
+  "powerpoint",
 ];
+
+const getTechName = (tech: string) => {
+  const names: Record<string, string> = {
+    python: "Python",
+    excel: "Excel",
+    powerbi: "Power BI",
+    sql: "SQL",
+    pandas: "Pandas",
+    powerpoint: "PowerPoint",
+  };
+  return names[tech] || tech;
+};
 ---
 
-<span class="text-lg font-medium text-[var(--white-icon)] group-hover:text-[var(--white)]">
-  {
-    tech === "powerbi" ? "Power BI" : 
-    tech === "powerpoint" ? "PowerPoint" : 
-    tech === "html5" ? "HTML5" : 
-    tech === "css3" ? "CSS3" : 
-    tech === "excel" ? "Excel" :
-    tech.charAt(0).toUpperCase() + tech.slice(1)
+<div class="w-full py-10 overflow-hidden bg-transparent">
+  <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+    {
+      technologies.map((tech) => (
+        <div class="flex items-center gap-2 group">
+          <img 
+            src={`/svg/${tech}.svg`} 
+            alt={tech} 
+            class="h-8 md:h-10 w-auto transition-transform group-hover:scale-110"
+            onerror="this.style.display='none'"
+          />
+          <span class="text-[var(--white-icon)] font-medium text-sm md:text-base uppercase tracking-widest">
+            {getTechName(tech)}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  /* Animación opcional por si quieres que se muevan */
+  div {
+    user-select: none;
   }
-</span>
+</style>
